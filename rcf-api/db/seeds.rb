@@ -18,13 +18,15 @@ end
 File.foreach(filename) do |line|
   # json_line = JSON.parse(line)
   csv_line = CSV.parse(line)
-  if csv_line[0][1][6..9] == "2017" && Complaint.create(
+  if csv_line[0][1][6..9] == "2017"
+    borough = Borough.find_or_create_by(name: csv_line[0][24])
+    zip_code = ZipCode.find_or_create_by(number: csv_line[0][8], borough_id: borough.id)
+    Complaint.create(
       complaint_type: csv_line[0][5],
       time_of_complaint: format_to_datetime(csv_line[0][1]),
-      borough: csv_line[0][24],
-      zip_code: csv_line[0][8],
       latitude: csv_line[0][50],
-      longitude: csv_line[0][51]
+      longitude: csv_line[0][51],
+      zip_code_id: zip_code.id
     )
   end
 end
