@@ -1,8 +1,11 @@
 
-class ComplaintSerializer < ActiveModel::Serializer
-  attributes :id, :complaint_type, :description, :latitude, :longitude, :borough
-  attribute :time_of_complaint, key: :date
+class ComplaintSerializer < ZipCodeComplaintSerializer
+  attributes :borough
   belongs_to :zip_code
+
+  def zip_code
+    object.zip_code.number
+  end
 
   def borough
     object.zip_code.borough.name.titlecase
