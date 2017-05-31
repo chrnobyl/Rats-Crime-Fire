@@ -1,9 +1,6 @@
 $(document).ready(function(){
   console.log('Document ready!')
-  var map;
-  function initMap() {
-    map = $('#map')
-  }
+
 
   $('form#zip-code').on('submit', function(event){
     event.preventDefault()
@@ -15,9 +12,17 @@ $(document).ready(function(){
     $.ajax({
       url: url,
       success: function(data){
+        var map;
+        var nyc = {lat: 40.7255944265592, lng: -73.9446377360189}
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: nyc
+          })
+        }
 
         data.complaints.map(function(complaint){
-          debugger
+          // debugger
           var coords = [complaint.latitude, complaint.longitude]
           var latLng = new google.maps.LatLng(coords[0], coords[1])
           var marker = new google.maps.Marker({
@@ -29,6 +34,8 @@ $(document).ready(function(){
     })
   })
 })
+
+
 
 
 
