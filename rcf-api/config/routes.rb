@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :complaints, only: :index
+      resources :boroughs, only: :index
+      resources :zip_codes, only: :index
     end
   end
 end
