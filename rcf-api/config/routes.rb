@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :complaints, only: :index
       resources :boroughs, only: :index
       resources :zip_codes, only: :index
+      get '/zip_codes/:number', to: 'zip_codes#show'
     end
   end
+
 end
