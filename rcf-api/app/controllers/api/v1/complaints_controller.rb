@@ -16,7 +16,13 @@ class Api::V1::ComplaintsController < ApplicationController
     if !params[:results]
       params[:results] = 100
     end
-    @complaints = Complaint.where("complaint_type ILIKE ?", params[:complaint_type]).order(:time_of_complaint)[0...params[:results].to_i]
+    if !!params[:complaint_type]
+      complaints = Complaint.where("complaint_type ILIKE ?", params[:complaint_type])
+
+    else
+      complaints = Complaint.all
+    end
+    @complaints = complaints.order(:time_of_complaint)[0...params[:results].to_i]
     render json: @complaints
   end
 end
