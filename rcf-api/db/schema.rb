@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170530204400) do
 
   create_table "complaints", force: :cascade do |t|
     t.string "complaint_type"
+    t.string "description"
     t.datetime "time_of_complaint"
     t.float "latitude"
     t.float "longitude"

@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
-filename = "db/rats.csv"
+filename = "db/2017complaints.csv"
 
 read_file = File.read(filename)
 
@@ -18,16 +18,19 @@ end
 File.foreach(filename) do |line|
   # json_line = JSON.parse(line)
   csv_line = CSV.parse(line)
-  if csv_line[0][1][6..9] == "2017" && !!csv_line[0][8] && csv_line[0][8].length == 5
-    borough = Borough.find_or_create_by(name: csv_line[0][24])
-    zip_code = ZipCode.find_or_create_by(number: csv_line[0][8], borough_id: borough.id)
+  if !!csv_line[0][4] && csv_line[0][4].length == 5
+    borough = Borough.find_or_create_by(name: csv_line[0][5])
+    zip_code = ZipCode.find_or_create_by(number: csv_line[0][4], borough_id: borough.id)
     Complaint.create(
-      complaint_type: csv_line[0][5],
-      time_of_complaint: format_to_datetime(csv_line[0][1]),
-      latitude: csv_line[0][50],
-      longitude: csv_line[0][51],
+      complaint_type: csv_line[0][2],
+      description: csv_line[0][3],
+      time_of_complaint: format_to_datetime(csv_line[0][0]),
+      latitude: csv_line[0][6],
+      longitude: csv_line[0][7],
       zip_code_id: zip_code.id
     )
+
+    # 02/23/2017 02:22:34 PM,Department of Health and Mental Hygiene,Food Establishment,Kitchen/Food Prep Area,11366,QUEENS,40.72831718797036,-73.78392480456014
 
   end
 end
