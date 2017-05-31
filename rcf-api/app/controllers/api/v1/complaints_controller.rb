@@ -16,7 +16,32 @@ class Api::V1::ComplaintsController < ApplicationController
     if !params[:results]
       params[:results] = 100
     end
-    @complaints = Complaint.where("complaint_type ILIKE ?", params[:complaint_type]).order(:time_of_complaint)[0...params[:results].to_i]
+    @complaints = select_complaints_from_params.order(
+      :time_of_complaint
+    )[0...params[:results].to_i]
     render json: @complaints
+  end
+
+  private
+
+  def complaint_params
+    params.permit(
+        :complaint_type,
+        :description,
+        :zip_code
+    )
+  end
+
+  def select_complaints_from_params
+    complaints = Complaint.all
+    # kludge, look into has_scope
+    complaint_params.each do |param|
+      if param == "zip_code"
+        complaints = complaints.where(zip_code_id: ZipCode.find_by(number: params[:zip_code]).id)
+      else
+        complaints = complaints.where("#{param.to_s} ILIKE ?", params[param])
+      end
+    end
+    complaints
   end
 end
