@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   # get '/api/v1/complaints', to: "complaints#index"
   namespace :api do
     namespace :v1 do
-      resources :complaints, only: :index
+      resources :complaints, only: [:index, :show]
       resources :boroughs, only: :index
+      get '/boroughs/:name', to: 'boroughs#show'
+      get '/boroughs/:name/:number', to: redirect('/api/v1/zip_codes/%{number}')
       resources :zip_codes, only: :index
       get '/zip_codes/:number', to: 'zip_codes#show'
+      get '/zip_codes/:number/:id', to: redirect('/api/v1/complaints/%{id}')
     end
   end
-
 end

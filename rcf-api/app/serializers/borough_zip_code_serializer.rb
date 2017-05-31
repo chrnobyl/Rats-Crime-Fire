@@ -4,5 +4,5 @@ class BoroughZipCodeSerializer < ActiveModel::Serializer
   def number_of_complaints
     object.complaints.count
   end
-  
+
 end

@@ -1,9 +1,7 @@
-class ZipCodeSerializer < ActiveModel::Serializer
-  attributes :id, :number, :borough
-  has_many :complaints, serializer: ZipCodeComplaintSerializer
+class ZipCodeSerializer < BoroughZipCodeSerializer
   belongs_to :borough
 
   def borough
-    object.borough.name
+    object.borough.name.titlecase
   end
 end

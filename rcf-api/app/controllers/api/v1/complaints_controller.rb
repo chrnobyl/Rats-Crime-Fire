@@ -5,7 +5,10 @@ class Api::V1::ComplaintsController < ApplicationController
   end
 
   def create
-
   end
 
+  def show
+    @complaint = Complaint.find_by(id: params[:id])
+    render json: @complaint
+  end
 end
