@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # get '/api/v1/complaints', to: "complaints#index"
   namespace :api do
     namespace :v1 do
+      get '/complaints/search', to: 'complaints#search'
       resources :complaints, only: [:index, :show]
       resources :boroughs, only: :index
       get '/boroughs/:name', to: 'boroughs#show'

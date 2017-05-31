@@ -8,7 +8,6 @@ $(document).ready(function(){
     $.ajax({
       url: url,
       success: function(data){
-
         const lis = data.complaints.map(function(complaint){
           return `<li>${complaint.date}</li>`
           })
