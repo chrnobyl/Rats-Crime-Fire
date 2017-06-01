@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/complaints/search', to: 'complaints#search'
+      get '/complaints/grouped', to: 'complaints#grouped'
       resources :complaints, only: [:index, :show]
       resources :boroughs, only: :index
       get '/boroughs/:name', to: 'boroughs#show'

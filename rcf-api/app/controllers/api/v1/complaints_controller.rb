@@ -1,3 +1,4 @@
+require 'json'
 class Api::V1::ComplaintsController < ApplicationController
   def index
     @complaints = Complaint.order(:time_of_complaint)[0...100]
@@ -20,6 +21,14 @@ class Api::V1::ComplaintsController < ApplicationController
       :time_of_complaint
     )[0...params[:results].to_i]
     render json: @complaints
+  end
+
+  def grouped
+    @group_complaints = Complaint.group(:complaint_type).order('count_id desc').count('id')
+     ans = @group_complaints.map do |complaint|
+       str = {label: complaint[0], value: complaint[1]}
+    end
+    render json: ans.to_json
   end
 
   private
