@@ -46,52 +46,62 @@
   </script>
   </head>
   <body>
-      <h1>311 Stats and Fun Stuff</h1>
-      <div>
-      <div class='row'>
-        <h4>How many complaints have there been (so far)? </h4>
-        <div class='col s0'>
+    <div class='container'>
+      <h1 class="center-align">311 Stats and Fun Stuff</h1>
+    </div>
+    <div class = 'row' >
+      <div class = 'col s8'>
+        <h4 class='left-align'>How many complaints have there been (so far)? </h4>
+      </div>
+    </div>
+    <div class = 'row'>
+      <div class = 'col s2'>
         <form id= 'total_complaints'>
         <input type='number' placeholder='total complaints' name="tcomplaints" />
         <input type='submit' value="How many whiners?"/>
       </div>
+      <div class='col s6 offset-s1'>
+            <div id= 'ans1Desc'>
+            </div>
+            <div id= 'ans1'>
+        </div>
+      </div>
     </div>
-    </div>
-    <div id= 'ans1Desc'>
-    </div>
-    <div id= 'ans1'>
-    </div>
-    </div>
+
     <div class='row'>
       <h4>What borough complains the most? </h4>
-      <div class='col s0'>
+      <div class='col s2'>
       <form id='boro_complaints'>
       <input type='text' placeholder='borough complaints' name="bcomplaints" />
       <input id="submitButton"type='submit' value="Who whines the most?"/>
       </form>
     </div>
-  </div>
-  </div>
+  <div class='col s6 offset-s1'>
   <div id= 'ans2Desc'>
   </div>
-
+</div>
+</div>
   <div class='row'>
     <h4>What are the most popuar complaints? </h4>
   <div id="chart-container"></div>
   </div>
+  </div>
 
 
 
-<div class='row'>
+<div>
   <h4>Matt's Top 5 Favorite Complaints </h4> <br>
 </div>
 
+<div class="row">
 <h4> Honorable Mention: </h4>
 <h5> 16 complaints about: </h5>
 <div id= 'ansH'>
 </div>
 <div id = 'ansHPic'> </div>
-<input id="submitButtonH"type='submit' value="Show me the Money"/> <br>
+<input id="submitButtonH"type='submit' value="Show me the Money"/>
+</div>
+<div>
 
 
 <h4> 5. </h4> <h5> One complaint about: </h5>
@@ -139,7 +149,8 @@
 
 
 </div>
-
+<br>
+<input type="button" value="Reset" onClick="window.location.reload()">
 
 
 
