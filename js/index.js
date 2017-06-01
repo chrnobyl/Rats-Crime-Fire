@@ -37,7 +37,7 @@ function makeNewMarker(complaint){
   const coords = [complaint.latitude, complaint.longitude]
   const latLng = new google.maps.LatLng(coords[0], coords[1])
   var infoWindow = new google.maps.InfoWindow({
-      content: `${complaint.description}, ${complaint.date}`
+      content: `${complaint.description}<br/> ${complaint.date}`
     })
     infoWindows.push(infoWindow)
   var marker = new google.maps.Marker({
