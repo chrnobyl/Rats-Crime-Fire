@@ -50,8 +50,30 @@ $(document).ready(function(){
       }
     })
   })
+
   $('#submitButton2').on('click', function(event){
     event.preventDefault()
+    function readyChart(chartData){
+      $("#ans3").insertFusionCharts({
+          type: 'pie2d',
+          width: '450',
+          height: '300',
+          dataFormat: 'json',
+          dataSource: {
+              "chart": {
+                  "caption": "Popular DHMH Complaints",
+                  "subCaption": "2017",
+                  "numberPrefix": "",
+                  "showPercentInTooltip": "1",
+                  "decimals": "1",
+                  "useDataPlotColorForLabels": "1",
+                  //Theme
+                  "theme": "fint"
+                },
+                "data": chartData
+              }
+            });
+          }
 
     $.ajax({
       url: 'http://localhost:3000/api/v1/complaints/grouped',
@@ -59,28 +81,6 @@ $(document).ready(function(){
           readyChart(data)
         }
       })
-
-      function readyChart(chartData){
-        $("#ans3").insertFusionCharts({
-            type: 'pie2d',
-            width: '450',
-            height: '300',
-            dataFormat: 'json',
-            dataSource: {
-                "chart": {
-                    "caption": "Popular DHMH Complaints",
-                    "subCaption": "2017",
-                    "numberPrefix": "",
-                    "showPercentInTooltip": "1",
-                    "decimals": "1",
-                    "useDataPlotColorForLabels": "1",
-                    //Theme
-                    "theme": "fint"
-                  },
-                  "data": chartData
-                }
-        });
-
   })
 
   $('#submitButtonH').on('click', function(event){

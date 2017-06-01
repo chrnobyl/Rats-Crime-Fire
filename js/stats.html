@@ -4,8 +4,49 @@
     <meta charset="utf-8">
     <title>311 Health/Hygiene Stats Quiz/Fun Stuff (2017)</title>
   </head>
+  <html>
+  <head>
+  <title>Popular Complaints</title>
+  <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+  <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script>
+    var chartData
+    $.ajax({
+      url: 'http://localhost:3000/api/v1/complaints/grouped',
+      success : function(data){
+          readyChart(data)
+        }
+      })
+      function readyChart(chartData){
+      FusionCharts.ready(function(){
+        var fusioncharts = new FusionCharts({
+          type: 'pie2d',
+          renderAt: 'chart-container',
+          width: '450',
+          height: '300',
+          dataFormat: 'json',
+          dataSource: {
+              "chart": {
+                  "caption": "Popular DHMH Complaints",
+                  "subCaption": "2017",
+                  "numberPrefix": "",
+                  "showPercentInTooltip": "1",
+                  "decimals": "1",
+                  "useDataPlotColorForLabels": "1",
+                  //Theme
+                  "theme": "fint"
+                },
+              "data": chartData
+            }
+        })
+        fusioncharts.render();
+      })
+    }
+  </script>
+  </head>
   <body>
-      <h1>311 Stats Quiz</h1>
+      <h1>311 Stats and Fun Stuff</h1>
       <div>
       <div class='row'>
         <h4>How many complaints have there been (so far)? </h4>
@@ -36,15 +77,9 @@
 
   <div class='row'>
     <h4>What are the most popuar complaints? </h4>
-    <div class='col s0'>
-    <form id='pop_complaints'>
-    <input id="submitButton2"type='submit' value="What do people whine about?"/>
-    </form>
+  <div id="chart-container"></div>
   </div>
-</div>
-</div>
-<div id= 'ans3'>
-</div>
+
 
 
 <div class='row'>
