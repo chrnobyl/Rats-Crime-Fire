@@ -22,30 +22,36 @@
           <ul id="complaints">
           </ul>
 
+          <style>
+            #map {
+              width: 400px;
+              height: 300px;
+            }
+          </style>
+
           <div id="map">
-            <iframe
-              width="600"
-              height="450"
-              frameborder="0" style="border:0"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBbLpbZHyrjwff3j0rTMU6y9JA5EGZ0q6Y&q=New+York,+NY" allowfullscreen>
-            </iframe>
+
           </div>
 
 
         </div>
       </div>
     </div>
+    <script>
+
+    </script>
+    <script type="text/javascript">
+
+    </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.css">
     <script
     src="https://code.jquery.com/jquery-2.2.4.min.js"
     integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>
-
     <script type="text/javascript" src="index.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGfiK9HHMGDWC_cWg11K1Bxo8n8ggd8vM"
-  type="text/javascript"></script>
-
-
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGfiK9HHMGDWC_cWg11K1Bxo8n8ggd8vM&callback=initMap">
+    </script>
   </body>
 </html>
