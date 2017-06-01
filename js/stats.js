@@ -115,16 +115,7 @@ $(document).ready(function(){
 
   $('#submitButton8').on('click', function(event){
     event.preventDefault()
-    $('#ans8Desc').html ('<h5> "Minor Recieved Tato" </h5>')
+    $('#ans8Desc').html ('<h5> "Minor Recieved Tattoo" </h5>')
     $('#ans8Pic').html("<img src= 'http://tattoospedia.com/deepsearches/Tattoo%20Fail/Kid%20Tattoo%20Fail%201.jpg'>")
   })
-
-
-
 })
-
-
-// CatchPhrase.all(function(data){
-//   const listView = new CatchPhraseListView(data)
-//   $('#phrases').html( listView.render() )
-// })
