@@ -45,7 +45,7 @@ $(document).ready(function(){
         if (guess2 === ans){
               $('#ans2Desc').html ('<h5> Indeed! All those dirty Brooklyn hipsters do is complain! </h5>')
             } else {
-              $('#ans2Desc').html ('<h5> Despite ($"#your incorrect reasoning") certainly being true, the answer is actually Brooklyn!  </h5>')
+              $('#ans2Desc').html(`<h5> Despite ${guess2} certainly being true, the answer is actually Brooklyn!  </h5>`)
             }
       }
     })
