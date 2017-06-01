@@ -1,5 +1,6 @@
 var mapObj
 var markers = []
+var infoWindows = []
 
 $(document).ready(function(){
   console.log('Document ready!')
@@ -32,26 +33,40 @@ function initMap() {
   mapObj = map
 }
 
-
-function makeNewMarker(position){
-  markers.push(new google.maps.Marker({
-    position: position,
+function makeNewMarker(complaint){
+  const coords = [complaint.latitude, complaint.longitude]
+  const latLng = new google.maps.LatLng(coords[0], coords[1])
+  var infoWindow = new google.maps.InfoWindow({
+      content: `${complaint.description}, ${complaint.date}`
+    })
+    infoWindows.push(infoWindow)
+  var marker = new google.maps.Marker({
+    position: latLng,
     map: mapObj
-  }))
+  })
+
+  marker.addListener('click', function() {
+    closeAllInfoWindows()
+    infoWindow.open(map, marker);
+  })
+  markers.push(marker)
 }
 
 function updateMarkers(data) {
   clearAllMarkers()
   data.map(function(complaint){
-    const coords = [complaint.latitude, complaint.longitude]
-    const latLng = new google.maps.LatLng(coords[0], coords[1])
-    makeNewMarker(latLng)
+    makeNewMarker(complaint)
   })
 }
-
 
 function clearAllMarkers(){
   markers.forEach(function(marker){
     marker.setMap(null)
+  })
+}
+
+function closeAllInfoWindows(){
+  infoWindows.forEach(function(infoWindow){
+    infoWindow.close()
   })
 }
