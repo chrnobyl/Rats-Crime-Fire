@@ -8,9 +8,14 @@
     <div class='container'>
       <h1>Rats Crime Fire</h1>
       <img src="http://www.athleticbusiness.com/images/old_site/editors/uploads/images01/mouse_Flames.jpg">
+
+
+      <select class='browser-default' name='complaint-category'>
+      </select>
+
       <div class='row'>
         <div class='col s4'>
-          <h4>Enter zip code to see rodent complaints</h4>
+          <h4>Enter zip code to see complaints</h4>
           <form id='zip-code'>
             <input type='text' placeholder='Zip Code' name="zip" />
             <input type='submit' value="Show me the rats"/>
@@ -44,6 +49,7 @@
     src="https://code.jquery.com/jquery-2.2.4.min.js"
     integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="src/models/ComplaintCategories.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGfiK9HHMGDWC_cWg11K1Bxo8n8ggd8vM&callback=initMap">
