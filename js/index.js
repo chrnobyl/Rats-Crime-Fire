@@ -1,20 +1,23 @@
 var mapObj
+var markers = []
 
 $(document).ready(function(){
   console.log('Document ready!')
   setFormSubmitAction()
+  ComplaintCategories.getGroupedComplaints()
 })
 
 function setFormSubmitAction(){
   $('form#zip-code').on('submit', function(event){
     event.preventDefault()
     const zip = $('input[name = zip]').val()
-    const url = `http://localhost:3000/api/v1/complaints/search?zip_code=${zip}&complaint_type=rodent&description=rat+sighting`
+    const category = $('select[name = complaint-category]').val()
+    const url = `http://localhost:3000/api/v1/complaints/search?zip_code=${zip}&complaint_type=${category}`
 
     $.ajax({
       url: url,
       success: function(data){
-          processData(data)
+          updateMarkers(data)
       }
     })
   })
@@ -23,23 +26,32 @@ function setFormSubmitAction(){
 function initMap() {
   var nyc = {lat: 40.7255944265592, lng: -73.9446377360189}
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 11,
     center: nyc
   })
   mapObj = map
 }
 
+
 function makeNewMarker(position){
-  new google.maps.Marker({
+  markers.push(new google.maps.Marker({
     position: position,
     map: mapObj
-  })
+  }))
 }
 
-function processData(data) {
+function updateMarkers(data) {
+  clearAllMarkers()
   data.map(function(complaint){
     const coords = [complaint.latitude, complaint.longitude]
     const latLng = new google.maps.LatLng(coords[0], coords[1])
     makeNewMarker(latLng)
+  })
+}
+
+
+function clearAllMarkers(){
+  markers.forEach(function(marker){
+    marker.setMap(null)
   })
 }
