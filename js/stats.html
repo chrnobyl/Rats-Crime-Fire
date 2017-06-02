@@ -13,7 +13,7 @@
   <script>
     var chartData
     $.ajax({
-      url: 'http://localhost:3000/api/v1/complaints/grouped',
+      url: 'https://infinite-ocean-43235.herokuapp.com/api/v1/complaints/grouped',
       success : function(data){
           readyChart(data)
         }

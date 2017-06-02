@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/complaints/search', to: 'complaints#search'
       get '/complaints/grouped', to: 'complaints#grouped'
+      get '/', to: redirect('/api/v1/complaints')
       resources :complaints, only: [:index, :show]
       resources :boroughs, only: :index
       get '/boroughs/:name', to: 'boroughs#show'
