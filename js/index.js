@@ -3,7 +3,6 @@ var markers = []
 var infoWindows = []
 
 $(document).ready(function(){
-  console.log('Document ready!')
   setFormSubmitAction()
   ComplaintCategories.getGroupedComplaints()
 })
@@ -34,10 +33,9 @@ function initMap() {
 }
 
 function makeNewMarker(complaint){
-  const coords = [complaint.latitude, complaint.longitude]
-  const latLng = new google.maps.LatLng(coords[0], coords[1])
+  const latLng = new google.maps.LatLng(complaint.latitude, complaint.longitude)
   var infoWindow = new google.maps.InfoWindow({
-      content: `${complaint.description}<br/> ${complaint.date}`
+      content: `<strong>${complaint.description}</strong><br/> ${complaint.date}<br/> (${complaint.latitude}, ${complaint.longitude})`
     })
     infoWindows.push(infoWindow)
   var marker = new google.maps.Marker({
@@ -52,17 +50,29 @@ function makeNewMarker(complaint){
   markers.push(marker)
 }
 
+function resetMapArea(){
+  var latlngbounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < markers.length; i++) {
+    latlngbounds.extend(markers[i].position);
+  }
+  mapObj.fitBounds(latlngbounds);
+}
+
 function updateMarkers(data) {
   clearAllMarkers()
   data.map(function(complaint){
-    makeNewMarker(complaint)
+    if (complaint.latitude !== null && complaint.longitude !== null){
+      makeNewMarker(complaint)
+    }
   })
+  resetMapArea()
 }
 
 function clearAllMarkers(){
   markers.forEach(function(marker){
     marker.setMap(null)
   })
+  markers = []
 }
 
 function closeAllInfoWindows(){
