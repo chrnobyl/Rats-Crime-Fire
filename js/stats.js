@@ -3,7 +3,7 @@ $(document).ready(function(){
     event.preventDefault()
     const guess = $('input[name=tcomplaints]').val()
     $.ajax({
-      url: 'https://infinite-ocean-43235.herokuapp.com/api/v1/boroughs',
+      url: 'http://localhost:3000/api/v1/boroughs',
       success: function(data){
         var total = 0
         data.forEach(function(borough){
@@ -23,7 +23,7 @@ $(document).ready(function(){
     event.preventDefault()
     const guess2 = $('input[name=bcomplaints]').val()
     $.ajax({
-      url: 'https://infinite-ocean-43235.herokuapp.com/api/v1/boroughs',
+      url: 'http://localhost:3000/api/v1/boroughs',
       success : function(data){
         const complaints = data.map(function(borough){
           var boro = {
@@ -56,8 +56,8 @@ $(document).ready(function(){
     function readyChart(chartData){
       $("#ans3").insertFusionCharts({
           type: 'pie2d',
-          width: '900',
-          height: '600',
+          width: '450',
+          height: '300',
           dataFormat: 'json',
           dataSource: {
               "chart": {
@@ -76,7 +76,7 @@ $(document).ready(function(){
           }
 
     $.ajax({
-      url: 'https://infinite-ocean-43235.herokuapp.com/api/v1/complaints/grouped',
+      url: 'http://localhost:3000/api/v1/complaints/grouped',
       success : function(data){
           readyChart(data)
         }
