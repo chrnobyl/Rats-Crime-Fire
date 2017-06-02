@@ -56,8 +56,8 @@ $(document).ready(function(){
     function readyChart(chartData){
       $("#ans3").insertFusionCharts({
           type: 'pie2d',
-          width: '450',
-          height: '300',
+          width: '900',
+          height: '600',
           dataFormat: 'json',
           dataSource: {
               "chart": {
