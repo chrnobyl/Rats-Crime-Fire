@@ -3,7 +3,6 @@ var markers = []
 var infoWindows = []
 
 $(document).ready(function(){
-  $('.parallax').parallax();
   setFormSubmitAction()
   ComplaintCategories.getGroupedComplaints()
 })
