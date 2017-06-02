@@ -33,10 +33,9 @@ function initMap() {
 }
 
 function makeNewMarker(complaint){
-  const coords = [complaint.latitude, complaint.longitude]
-  const latLng = new google.maps.LatLng(coords[0], coords[1])
+  const latLng = new google.maps.LatLng(complaint.latitude, complaint.longitude)
   var infoWindow = new google.maps.InfoWindow({
-      content: `${complaint.description}<br/> ${complaint.date}`
+      content: `<strong>${complaint.description}</strong><br/> ${complaint.date}<br/> (${complaint.latitude}, ${complaint.longitude})`
     })
     infoWindows.push(infoWindow)
   var marker = new google.maps.Marker({
@@ -62,7 +61,9 @@ function resetMapArea(){
 function updateMarkers(data) {
   clearAllMarkers()
   data.map(function(complaint){
-    makeNewMarker(complaint)
+    if (complaint.latitude !== null && complaint.longitude !== null){
+      makeNewMarker(complaint)
+    }
   })
   resetMapArea()
 }
