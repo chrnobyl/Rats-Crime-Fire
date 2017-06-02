@@ -3,7 +3,6 @@ var markers = []
 var infoWindows = []
 
 $(document).ready(function(){
-  console.log('Document ready!')
   setFormSubmitAction()
   ComplaintCategories.getGroupedComplaints()
 })
@@ -52,17 +51,27 @@ function makeNewMarker(complaint){
   markers.push(marker)
 }
 
+function resetMapArea(){
+  var latlngbounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < markers.length; i++) {
+    latlngbounds.extend(markers[i].position);
+  }
+  mapObj.fitBounds(latlngbounds);
+}
+
 function updateMarkers(data) {
   clearAllMarkers()
   data.map(function(complaint){
     makeNewMarker(complaint)
   })
+  resetMapArea()
 }
 
 function clearAllMarkers(){
   markers.forEach(function(marker){
     marker.setMap(null)
   })
+  markers = []
 }
 
 function closeAllInfoWindows(){
