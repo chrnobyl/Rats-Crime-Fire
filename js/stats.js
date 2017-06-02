@@ -85,7 +85,7 @@ $(document).ready(function(){
 
   $('#butt3').on('click', function(event){
     event.preventDefault()
-    $('#ansH').html ('<h5> "Pidgeon Odor"  </h5>')
+    $('#ansH').html ('<h5> "Pigeon Odor"  </h5>')
     $('#ansHPic').html("<img src= 'https://cdn.shopify.com/s/files/1/1028/1501/files/62e104a5ebd8272209d6bc3ff7a3f0d6_grande.jpg?12701140460794891227' alt='sup' height='200' width='400'>")
   })
 
@@ -115,7 +115,7 @@ $(document).ready(function(){
 
   $('#butt8').on('click', function(event){
     event.preventDefault()
-    $('#ans8Desc').html ('<h5> "Minor Recieved Tattoo" </h5>')
+    $('#ans8Desc').html ('<h5> "Minor Received Tattoo" </h5>')
     $('#ans8Pic').html("<img src= 'http://tattoospedia.com/deepsearches/Tattoo%20Fail/Kid%20Tattoo%20Fail%201.jpg'>")
   })
 })
